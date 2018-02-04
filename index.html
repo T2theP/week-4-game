@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>Hangman</title>
+</head>
+<body>
+
+<div class = "page-header customHeader">
+<h1>Hangman!</h1>
+<h4>
+Press any key to start guessing
+</h4>
+
+
+</div>
+
+<div class = hangmanMain>
+	<div>
+		<h2> Letters Guessed </h2>
+		<span id = "lettersGuessed"> </span>
+	</div>
+
+	<div id="hold">
+	</div>
+	
+	<div class = "liveCount">
+	<p id = "message">You have: <span id = "mylives">6</span> strikes remaining</p> 
+	<p id = "mylives"> </p>
+	</div>
+
+	<div class = "gameTotals">
+		<div>Wins <span id = "wins"></span></div>
+		<div>Losses <span id = "losses"></span></div>
+	</div>
+
+</div>
+
+<script src = "assets/javascript/game.js"></script>
+</body>
+</html>
