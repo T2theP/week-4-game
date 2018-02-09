@@ -1,52 +1,218 @@
- *{
-   color: black;
- }
- #my-word {
-   margin: 15px;
-   display: block;
-   padding: 0;
-   display:block;
- }
- 
- #my-word li {
-   position: relative;
-   list-style: none;
-   margin: 0;
-   display: inline-block;
-   padding: 0 10px;
-   font-size:1.6em;
- }
- 
- .customHeader{
-   text-align: center;
-   z-index: 1;
- 
- }
- 
- .hangmanMain{
-   text-align: center;
- }
- 
- .liveCount{
-   margin: 10px;
-   font-size: 18px;
- }
-  
-  #lettersGuessed{
-    font-size: 18px;
-   font-weight: bold;
-  }
-  
-  body:before {
-   content: " ";
-   position: absolute;
-   top: 0; 
-   left: 0;
-   width: 100%; 
-   height: 100%;
-   opacity: .5; 
-   z-index: -1;
-   background-image: url("../images/hangman.jpg");
-   background-size:cover;
-   background-repeat: no-repeat;
- }
+
+
+body{
+	background-color: #125e92; /* changed background color per wife */
+}
+
+.container {
+	border: 4px solid #e01010;
+	border-radius: 25px;
+	padding: 0px 5%;
+	background-image: url("../images/bk.jpg");} 
+
+h1 {
+	font-family: 'Berkshire Swash', cursive;
+	font-size: 6em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-shadow: 5px 5px 0px #fff, 7px 7px 0px #d40b69;
+	color: #2bac26;
+	line-height: 1;
+}
+
+.directions {
+	font-family: 'Berkshire Swash', cursive;
+	font-size: 16pt;
+	color: #51a3db;
+	line-height: 1;
+}
+
+.winsLosses {
+	margin-top: 20px;
+
+}
+
+.score {
+	border: 4px solid #125e92;
+	border-radius: 15px;
+	padding: 10px 0px;
+	background-color: #fff;
+    overflow: hidden;
+    opacity: 0.7;
+    filter: alpha(opacity=30); /* For IE8 and earlier */
+}
+
+.scoreWin {
+	font-family: 'Berkshire Swash', cursive;
+	margin: -15px auto;
+	text-align: center;
+	font-size: 3em;
+	color: #8abb70;
+}
+
+
+.scoreBorder {
+	border-right: 2px solid #125e92;
+}
+
+
+.scoreLoss {
+	font-family: 'Berkshire Swash', cursive;
+	margin: -15px auto 0px auto;
+	text-align: center;
+	font-size: 3em;
+	color: #f8433a;
+}
+
+.win {
+	font-family: 'Berkshire Swash', cursive;
+	margin: -15px auto -15px auto;
+	text-align: center;
+	font-size: 4em;
+	line-height: 1.25;
+	color: #8abb70;
+}
+
+.loss {
+	font-family: 'Berkshire Swash', cursive;
+	margin: -15px auto -15px auto;
+	text-align: center;
+	font-size: 4em;
+	line-height: 1.25;
+	color: #f8433a;
+}
+
+.comp {
+	margin-top: 20px;
+	border: 3px solid #125e92;
+	border-radius: 15px;
+	padding: 0px;
+	background-color: #51a3db;
+    overflow: hidden;
+    opacity: 0.7;
+    filter: alpha(opacity=30); /* For IE8 and earlier */
+}
+
+.compScore {
+	font-family: 'Berkshire Swash', cursive;
+	margin: 0px auto;
+	text-align: center;
+	font-size: 2.5em;
+	border-bottom: 2px solid #125e92;
+	color: #fff;
+
+}
+
+.compNum {
+	font-family: 'Berkshire Swash', cursive;
+	margin: -35px auto -15px auto;
+	margin: 0px auto;
+	text-align: center;
+	font-size: 3.5em;
+	line-height: 1.25;
+	background-color: #fff;
+	color: #125e92;
+
+}
+
+.crystalBox {
+	margin-top: 20px;
+	border: 4px solid #125e92;
+	border-radius: 15px;
+	padding: 10px 40px;
+    background-color: #fff;
+    opacity: 0.7;
+    filter: alpha(opacity=30); /* For IE8 and earlier */
+}
+
+.crystalimg {
+	float: left;
+
+}
+
+.your {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 3px solid #125e92;
+	border-radius: 15px;
+	padding: 0px;
+	background-color: #51a3db;
+    overflow: hidden;
+    opacity: 0.7;
+    filter: alpha(opacity=30); /* For IE8 and earlier */          
+}
+
+.yourScore {
+	font-family: 'Berkshire Swash', cursive;
+	margin: 0px auto;
+	text-align: center;
+	font-size: 2.5em;
+	border-bottom: 2px solid #125e92;
+	color: #fff;
+
+}
+
+.yourNum {
+	font-family: 'Berkshire Swash', cursive;
+	margin: -35px auto -15px auto;
+	margin: 0px auto;
+	text-align: center;
+	font-size: 3.5em;
+	line-height: 1.25;
+	background-color: #fff;
+	color: #125e92;
+}
+
+.dirpop {
+	border: 4px solid #e6732e;
+	background-color: #fff;
+	border-radius: 25px;
+	padding: 20px;
+	width: 40%;
+	font-family: 'Berkshire Swash', cursive;
+}
+
+.dirhead {
+ font-size: 3em;
+ color: #125e92;
+}
+
+.dirbody {
+	font-size: 1.5em;
+	line-height: 1;
+	color: #000;
+}
+
+.my_popup_close {
+	font-size: 1.5em;
+	margin-top: 10px;
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+	
+		h1 {
+			font-size: 5.5em;
+		}
+    }
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+    	h1 {
+			font-size: 5em;
+		}
+
+	.dirpop {
+		width: 80%;
+		font-family: 'Berkshire Swash', cursive;
+		}
+
+    }
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+    	h1 {
+			font-size: 4.5em;
+		}
+
+    }

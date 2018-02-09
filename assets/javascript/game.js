@@ -1,136 +1,113 @@
-var words =  [
-	"cat",
-	"dog",
-	"bird",
-	"snake",
-	"rock",
-	"cow",
-	"goat",
-	"fish",
-	"pig",
-	"bat",
-];
 
-var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-		'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-		't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
-var showLives;
-
-var gameOn = false;
-var userGuess; // letter chosen by user
+$(document).ready(function() {
 
 
-var wins = 0;
-var losses = 0;
-
-var winsDiv = document.getElementById("wins");
-var lossesDiv = document.getElementById("losses");
-
-winsDiv.innerHTML = wins;
-lossesDiv.innerHTML = losses;
-
-//Create Hangman object
-var hangmanConstructor = function(){
-
-	return { 
-	strikes: 10,
-	gameOngoing: true,
-	word: words[Math.floor(Math.random() * words.length)],
-	lettersGuessed: [],
-	availableSpots: [],
-	counter: 0,
-
-		setup: function(){
-
-		    wordHolder = document.getElementById('hold');
-
-		    for (var i = 0; i < this.word.length; i++) {
-		      ul.setAttribute('id', 'my-word');
-		      guess = document.createElement('li');
-		      guess.setAttribute('class', 'guess');
-		      guess.innerHTML = "_";
-
-		      this.availableSpots.push(guess);
-		      wordHolder.appendChild(ul);
-		      ul.appendChild(guess);
-		    }
-		},
-
-		gameStatus: function () {
-			showLives = document.getElementById("mylives");
-			showLives.innerHTML = "You have " + this.strikes + " lives";
-			if (this.strikes == 0) {
-				losses++;
-				showLives.innerHTML = "Game Over";
-				lossesDiv.innerHTML = losses;
-				this.gameOver();
-			}
-			if (this.counter === this.availableSpots.length) {   // This section needs some work
-				wins++;
-				showLives.innerHTML = "You Win!";
-				winsDiv.innerHTML = wins;
-				this.gameOver();
-			}
-		},
-
-		checkGuess: function(userGuess){   // does not start the way I though it should
-
-			if(!this.lettersGuessed.includes(userGuess)){
-				if(this.word.toLowerCase().includes(userGuess)){
-					this.lettersGuessed.push(userGuess);
-					for (var i = 0; i < this.word.length; i++) {
-						if (this.word.toLowerCase().charAt(i) === userGuess) {
-							this.availableSpots[i].innerHTML = userGuess;
-							this.counter += 1;
-						} 
-					}
-					document.getElementById("lettersGuessed").innerHTML = this.lettersGuessed;
-				}
-				else{
-					this.lettersGuessed.push(userGuess);
-					document.getElementById("lettersGuessed").innerHTML = this.lettersGuessed;
-					this.strikes--;
-				}
-
-			}
-			else
-				console.log("letter already used");
-
-		}, // end check guess
-
-		gameOver: function(){
-			// do stuff when game is over   // does not work!
-
-			gameOn = false;
-			wordHolder = document.getElementById('hold');
-			console.log("parent node: " + wordHolder);
-			wordHolder.innerHTML = '';
-			ul = document.createElement('ul');
-		}
-
-	};
-}
-
-var hangman;
-
-document.onkeyup = function(event){
-
-	userGuess = event.key;
-
-	if(alphabet.includes(userGuess)){
-
-		if(!gameOn){
-			gameOn = true;
-			hangman = hangmanConstructor();
-			hangman.setup();
-		}
-
-		hangman.checkGuess(userGuess);
-		hangman.gameStatus();
-
-	}
-	else
-		alert("Please enter a letter from the alphabet");
 	
-}
+    // global variables
+    var win = 0;
+    var loss = 0;
+    var computerNumber = 0;
+    var crystal1 = 0;
+    var crystal2 = 0;
+    var crystal3 = 0;
+    var crystal4 = 0;
+    var crystalTotal = 0;
+    
+    
+    //random Number Function
+    function randomNumber(min,max){
+            return Math.floor(Math.random()*(max-min+1)+min);
+            }
+    
+    //restart game function
+        function restart(){
+            computerNumber = 0;
+            crystal1 = 0;
+            crystal2 = 0;
+            crystal3 = 0;
+            crystal4 = 0;
+            crystalTotal = 0;
+            $('#yourNum').text(0);
+            startGame();
+        };
+    
+    //compare score function
+    function checkScore() {
+            if (crystalTotal == computerNumber) {
+                win++;
+                $('#win').text(win);
+                restart();
+            }; 
+    
+            if (crystalTotal > computerNumber) {
+                loss++;
+                $('#loss').text(loss);
+                restart();	
+            }; 
+    };	
+    
+    
+    //start game
+    
+    function startGame(){
+        //choose computerNumber
+            var num1 = randomNumber(19,120);
+            computerNumber = num1;
+            $('#compNum').text(computerNumber);
+    
+        //choose crystal1 #
+            var num2 = randomNumber(1,12);
+            crystal1 = num2;
+    
+        //choose crystal2 #
+            var num3 = randomNumber(1,12);
+            crystal2 = num3;
+    
+        //choose crystal3 #
+            var num4 = randomNumber(1,12);
+            crystal3 = num4;
+    
+        //choose crystal4 #
+            var num5 = randomNumber(1,12);
+            crystal4 = num5;
+        }
+    
+        //click crystal1
+            $("#crystalimg1").click(function(){
+                crystalTotal += crystal1;
+                $('#yourNum').text(crystalTotal);
+                $(this).effect("bounce", { times:2 }, 300);
+                checkScore();
+            }); 
+    
+        //click crystal2
+            $("#crystalimg2").click(function(){
+                crystalTotal += crystal2;
+                $('#yourNum').text(crystalTotal);
+                $(this).effect("bounce", { times:2 }, 300);
+                checkScore();
+            }); 
+    
+        //click crystal3
+            $("#crystalimg3").click(function(){
+                crystalTotal += crystal3;
+                $('#yourNum').text(crystalTotal);
+                $(this).effect("bounce", { times:2 }, 300);
+                checkScore();
+            }); 
+    
+        //click crystal4
+            $("#crystalimg4").click(function(){
+                crystalTotal += crystal4;
+                $('#yourNum').text(crystalTotal);
+                $(this).effect("bounce", { times:2 }, 300);
+                checkScore();
+            }); 
+        
+    startGame();
+    
+    //pop up directions
+    $('#my_popup').popup();
+    
+    });
+    
